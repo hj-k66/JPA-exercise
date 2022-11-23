@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -19,5 +16,9 @@ public class Book {
     private Long id;
     private String name;
     private Long publisherId;
-    private Long authorId;
+
+    @ManyToOne
+    @JoinColumn(name = "author_Id")
+    private Author author;
+
 }
