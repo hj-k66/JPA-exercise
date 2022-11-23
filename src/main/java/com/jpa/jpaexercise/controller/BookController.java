@@ -18,8 +18,6 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-
-
     @GetMapping("/list")
     public ResponseEntity<List<BookResponse>> getList(Pageable pageable){
         List<BookResponse> all = bookService.getAll(pageable);

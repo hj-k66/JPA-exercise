@@ -8,15 +8,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class BookResponse {
     private Long id;
     private String name;
     private String authorName;
+    private String publisherName;
 
     public static BookResponse of(Book book){
-        return new BookResponse(book.getId(), book.getName(), book.getAuthor().getName());
+        return BookResponse.builder()
+                .id(book.getId())
+                .name(book.getName())
+                .authorName(book.getAuthor().getName())
+                .publisherName(book.getPublisher().getName())
+                .build();
     }
 }
