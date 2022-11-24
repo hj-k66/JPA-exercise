@@ -9,6 +9,8 @@ import com.jpa.jpaexercise.hospital.repository.HospitalRepository;
 import com.jpa.jpaexercise.hospital.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +24,21 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
+
+    public List<ReviewResponse> getAllByHospital(Long id) {
+        List<Review> reviews = reviewRepository.findAllByHospitalId(id);
+        List<ReviewResponse> responseList = new ArrayList<>();
+        for(Review review:reviews){
+            responseList.add(ReviewResponse.builder()
+                            .hospitalId(review.getHospital().getId())
+                            .userName(review.getUserName())
+                            .content(review.getContent())
+                            .title(review.getTitle())
+                            .id(review.getId())
+                    .build());
+        }
+        return responseList;
+    }
     public ReviewResponse getOneReview( Long reviewId){
         Optional<Review> opReview = reviewRepository.findById(reviewId);
         Review review = opReview.get();
