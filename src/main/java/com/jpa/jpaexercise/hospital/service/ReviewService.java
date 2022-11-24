@@ -2,6 +2,7 @@ package com.jpa.jpaexercise.hospital.service;
 
 import com.jpa.jpaexercise.hospital.domain.dto.ReviewAddRequest;
 import com.jpa.jpaexercise.hospital.domain.dto.ReviewAddResponse;
+import com.jpa.jpaexercise.hospital.domain.dto.ReviewResponse;
 import com.jpa.jpaexercise.hospital.domain.entity.Hospital;
 import com.jpa.jpaexercise.hospital.domain.entity.Review;
 import com.jpa.jpaexercise.hospital.repository.HospitalRepository;
@@ -19,6 +20,19 @@ public class ReviewService {
     public ReviewService(HospitalRepository hospitalRepository, ReviewRepository reviewRepository) {
         this.hospitalRepository = hospitalRepository;
         this.reviewRepository = reviewRepository;
+    }
+
+    public ReviewResponse getOneReview( Long reviewId){
+        Optional<Review> opReview = reviewRepository.findById(reviewId);
+        Review review = opReview.get();
+        return ReviewResponse.builder()
+                .id(review.getId())
+                .title(review.getTitle())
+                .content(review.getContent())
+                .userName(review.getUserName())
+                .hospitalId(review.getHospital().getId())
+                .build();
+
     }
 
     public ReviewAddResponse add(ReviewAddRequest request, Long hospitalId){
