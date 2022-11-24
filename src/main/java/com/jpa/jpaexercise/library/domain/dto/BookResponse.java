@@ -1,7 +1,7 @@
-package com.jpa.jpaexercise.domain.dto;
+package com.jpa.jpaexercise.library.domain.dto;
 
 
-import com.jpa.jpaexercise.domain.entity.Book;
+import com.jpa.jpaexercise.library.domain.entity.Book;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

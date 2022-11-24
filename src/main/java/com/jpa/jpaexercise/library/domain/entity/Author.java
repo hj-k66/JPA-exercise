@@ -1,4 +1,4 @@
-package com.jpa.jpaexercise.domain.entity;
+package com.jpa.jpaexercise.library.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

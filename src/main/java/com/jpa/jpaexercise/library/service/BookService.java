@@ -1,8 +1,8 @@
-package com.jpa.jpaexercise.service;
+package com.jpa.jpaexercise.library.service;
 
-import com.jpa.jpaexercise.domain.dto.BookResponse;
-import com.jpa.jpaexercise.domain.entity.Book;
-import com.jpa.jpaexercise.repository.BookRepository;
+import com.jpa.jpaexercise.library.domain.dto.BookResponse;
+import com.jpa.jpaexercise.library.domain.entity.Book;
+import com.jpa.jpaexercise.library.repository.BookRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

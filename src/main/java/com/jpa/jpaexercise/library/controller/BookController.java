@@ -1,7 +1,7 @@
-package com.jpa.jpaexercise.controller;
+package com.jpa.jpaexercise.library.controller;
 
-import com.jpa.jpaexercise.domain.dto.BookResponse;
-import com.jpa.jpaexercise.service.BookService;
+import com.jpa.jpaexercise.library.domain.dto.BookResponse;
+import com.jpa.jpaexercise.library.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
