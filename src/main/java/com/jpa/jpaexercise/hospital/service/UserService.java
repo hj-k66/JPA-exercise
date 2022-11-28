@@ -3,6 +3,8 @@ package com.jpa.jpaexercise.hospital.service;
 import com.jpa.jpaexercise.hospital.domain.dto.UserDto;
 import com.jpa.jpaexercise.hospital.domain.dto.UserJoinRequest;
 import com.jpa.jpaexercise.hospital.domain.entity.User;
+import com.jpa.jpaexercise.hospital.exception.ErrorCode;
+import com.jpa.jpaexercise.hospital.exception.HospitalReviewException;
 import com.jpa.jpaexercise.hospital.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class UserService {
         //중복 체크
         userRepository.findByUserName(userJoinRequest.getUserName())
                 .ifPresent(user -> {
-                    throw new RuntimeException("해당 userName이 중복 됩니다.");
+                    throw new HospitalReviewException(ErrorCode.DUPLICATED_USER_NAME, "해당 userName이 이미 존재합니다. 다시 작성해주세요.");
                 });
         User user = userRepository.save(userJoinRequest.toEntity());
         return UserDto.builder()
