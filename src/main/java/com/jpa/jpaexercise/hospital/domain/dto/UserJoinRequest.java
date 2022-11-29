@@ -2,11 +2,13 @@ package com.jpa.jpaexercise.hospital.domain.dto;
 
 import com.jpa.jpaexercise.hospital.domain.entity.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 public class UserJoinRequest {
     private String userName;
@@ -14,10 +16,10 @@ public class UserJoinRequest {
     private String phoneNumber;
     private String email;
 
-    public User toEntity(){
+    public User toEntity(String password){
         return User.builder()
                 .userName(this.userName)
-                .password(this.password)
+                .password(password)
                 .phoneNumber(this.phoneNumber)
                 .email(this.email)
                 .build();
