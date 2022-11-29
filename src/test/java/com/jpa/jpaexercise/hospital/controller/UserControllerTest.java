@@ -4,6 +4,7 @@ package com.jpa.jpaexercise.hospital.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jpa.jpaexercise.hospital.domain.dto.UserDto;
 import com.jpa.jpaexercise.hospital.domain.dto.UserJoinRequest;
+import com.jpa.jpaexercise.hospital.domain.dto.UserLoginRequest;
 import com.jpa.jpaexercise.hospital.exception.ErrorCode;
 import com.jpa.jpaexercise.hospital.exception.HospitalReviewException;
 import com.jpa.jpaexercise.hospital.service.UserService;
@@ -76,4 +77,25 @@ class UserControllerTest {
                 .andDo(print())
                 .andExpect(status().isConflict());
     }
+
+    @Test
+    @DisplayName("로그인 실패 - id없음")
+    @WithMockUser
+    void login_fail_id() throws Exception{
+        //id, pw를 보내서 - LoginRequest
+        UserLoginRequest userLoginRequest = UserLoginRequest.builder()
+                .userName("id1")
+                .password("asdf")
+                .build();
+
+        when(userService.login(any(),any())).thenThrow(new HospitalReviewException(ErrorCode.NOT_FOUND,""));
+
+        mockMvc.perform(post("/api/v1/users/login")
+                .with(csrf())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(userLoginRequest)))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
 }

@@ -7,7 +7,9 @@ import com.jpa.jpaexercise.hospital.domain.entity.User;
 import com.jpa.jpaexercise.hospital.exception.ErrorCode;
 import com.jpa.jpaexercise.hospital.exception.HospitalReviewException;
 import com.jpa.jpaexercise.hospital.repository.UserRepository;
+import com.jpa.jpaexercise.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,10 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+
+    @Value("${jwt.token.secret}")
+    private String secretKey;
+    private long expireTimeMs = 1000 * 60 * 60; //만료 시간 = 1시간
 
     public UserDto join(UserJoinRequest userJoinRequest){
         //중복 체크
@@ -30,5 +36,18 @@ public class UserService {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
+    }
+
+    public String login(String userName, String password) {
+        //해당 userName없으면 ErrorCode.NOT_FOUND 발생
+        User user = userRepository.findByUserName(userName)
+                .orElseThrow(() -> new HospitalReviewException(ErrorCode.NOT_FOUND, ""));
+        //password 일치 여부 확인 >
+        if(!encoder.matches(password,user.getPassword())){
+            throw new HospitalReviewException(ErrorCode.INVALID_PASSWORD,"");
+        }
+        //예외발생 x >> Token 발행
+        return JwtTokenUtil.createToken(userName,secretKey, expireTimeMs);
+
     }
 }
