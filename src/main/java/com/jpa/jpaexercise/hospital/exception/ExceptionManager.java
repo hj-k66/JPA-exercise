@@ -17,7 +17,7 @@ public class ExceptionManager {
    @ExceptionHandler(HospitalReviewException.class)
     public ResponseEntity<?> hospitalReviewExceptionHandler(HospitalReviewException e){
        return ResponseEntity.status(e.getErrorCode().getStatus())
-               .body(Response.error(ErrorCode.DUPLICATED_USER_NAME.name()));
+               .body(Response.error(e.getErrorCode().getMessage()));
    }
 
 }

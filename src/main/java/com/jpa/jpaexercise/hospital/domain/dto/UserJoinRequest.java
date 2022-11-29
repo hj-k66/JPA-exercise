@@ -16,7 +16,7 @@ public class UserJoinRequest {
     private String phoneNumber;
     private String email;
 
-    public User toEntity(String password){
+    public User  toEntity(String password){
         return User.builder()
                 .userName(this.userName)
                 .password(password)
