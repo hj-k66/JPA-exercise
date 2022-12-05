@@ -1,6 +1,5 @@
 package com.jpa.jpaexercise.hospital.service;
 
-import com.jpa.jpaexercise.configuration.EncrypterConfig;
 import com.jpa.jpaexercise.hospital.domain.dto.UserDto;
 import com.jpa.jpaexercise.hospital.domain.dto.UserJoinRequest;
 import com.jpa.jpaexercise.hospital.domain.entity.User;
@@ -22,6 +21,11 @@ public class UserService {
     @Value("${jwt.token.secret}")
     private String secretKey;
     private long expireTimeMs = 1000 * 60 * 60; //만료 시간 = 1시간
+
+    public User getUserByUserName(String userName){
+        return userRepository.findByUserName(userName)
+                .orElseThrow(()->new HospitalReviewException(ErrorCode.NOT_FOUND,""));
+    }
 
     public UserDto join(UserJoinRequest userJoinRequest){
         //중복 체크

@@ -1,5 +1,6 @@
 package com.jpa.jpaexercise.hospital.domain.dto;
 
+import com.jpa.jpaexercise.hospital.domain.UserRole;
 import com.jpa.jpaexercise.hospital.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,7 @@ public class UserJoinRequest {
                 .password(password)
                 .phoneNumber(this.phoneNumber)
                 .email(this.email)
+                .role(UserRole.USER)  //default=USER
                 .build();
     }
 }

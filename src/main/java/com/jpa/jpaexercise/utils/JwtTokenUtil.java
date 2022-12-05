@@ -1,7 +1,6 @@
 package com.jpa.jpaexercise.utils;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -19,6 +18,11 @@ public class JwtTokenUtil {
                 .signWith(SignatureAlgorithm.HS256,key) //어떤 암호화방식으로 사인할지, key로 잠금
                 .compact();
     }
+
+    public static String getUserName(String token, String secretKey){
+        return extractClaims(token, secretKey).get("userName",String.class);
+    }
+
     public static boolean isExpired(String token, String secretKey){
         Date expirationDate = extractClaims(token, secretKey).getExpiration();
         return expirationDate.before(new Date());

@@ -1,5 +1,6 @@
 package com.jpa.jpaexercise.configuration;
 
+import com.jpa.jpaexercise.hospital.domain.entity.User;
 import com.jpa.jpaexercise.hospital.service.UserService;
 import com.jpa.jpaexercise.utils.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
@@ -57,8 +58,17 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
 
+        //UserName Token에서 꺼내기
+        String userName = JwtTokenUtil.getUserName(token, secretKey);
+        log.info("userName : {}", userName);
+        //UserDetail 가져오기 >> UserRole
+        User user = userService.getUserByUserName(userName);
+        log.info("userName:{}, userRole:{}", user.getUserName(), user.getRole());
+
+
         //문열어주기 >> 허용
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken("", null, List.of(new SimpleGrantedAuthority("USER")));
+        //Role 바인딩
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUserName(), null, List.of(new SimpleGrantedAuthority(user.getRole().name())));
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request,response);

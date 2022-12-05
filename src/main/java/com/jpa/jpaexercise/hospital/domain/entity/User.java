@@ -1,5 +1,6 @@
 package com.jpa.jpaexercise.hospital.domain.entity;
 
+import com.jpa.jpaexercise.hospital.domain.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,9 @@ public class User {
     private String password;
     private String phoneNumber;
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 
 }
