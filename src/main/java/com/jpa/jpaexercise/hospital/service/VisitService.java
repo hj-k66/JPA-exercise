@@ -2,6 +2,7 @@ package com.jpa.jpaexercise.hospital.service;
 
 import com.jpa.jpaexercise.hospital.domain.dto.visit.VisitCreateRequest;
 import com.jpa.jpaexercise.hospital.domain.dto.visit.VisitCreateResponse;
+import com.jpa.jpaexercise.hospital.domain.dto.visit.VisitResponse;
 import com.jpa.jpaexercise.hospital.domain.entity.Hospital;
 import com.jpa.jpaexercise.hospital.domain.entity.User;
 import com.jpa.jpaexercise.hospital.domain.entity.Visit;
@@ -14,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +39,21 @@ public class VisitService {
                 .build();
         visitRepository.save(visit);
         return new VisitCreateResponse("방문 기록 등록에 성공했습니다.");
+    }
+
+    public List<VisitResponse> getAllVisits() {
+        List<Visit> visits = visitRepository.findAll();
+        List<VisitResponse> visitResponses = new ArrayList<>();
+        for(Visit v : visits){
+            visitResponses.add(VisitResponse.builder()
+                            .id(v.getId())
+                            .createDateTime(v.getCreateDateTime())
+                            .disease(v.getDisease())
+                            .hospitalName(v.getHospital().getHospitalName())
+                            .payment(v.getPayment())
+                            .userName(v.getUser().getUserName())
+                    .build());
+        }
+        return visitResponses;
     }
 }
