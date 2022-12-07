@@ -1,7 +1,7 @@
 package com.jpa.jpaexercise.hospital.service;
 
-import com.jpa.jpaexercise.hospital.domain.dto.UserDto;
-import com.jpa.jpaexercise.hospital.domain.dto.UserJoinRequest;
+import com.jpa.jpaexercise.hospital.domain.dto.user.UserDto;
+import com.jpa.jpaexercise.hospital.domain.dto.user.UserJoinRequest;
 import com.jpa.jpaexercise.hospital.domain.entity.User;
 import com.jpa.jpaexercise.hospital.exception.ErrorCode;
 import com.jpa.jpaexercise.hospital.exception.HospitalReviewException;

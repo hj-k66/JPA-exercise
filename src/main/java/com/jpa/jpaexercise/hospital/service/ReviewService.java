@@ -1,8 +1,8 @@
 package com.jpa.jpaexercise.hospital.service;
 
-import com.jpa.jpaexercise.hospital.domain.dto.ReviewAddRequest;
-import com.jpa.jpaexercise.hospital.domain.dto.ReviewAddResponse;
-import com.jpa.jpaexercise.hospital.domain.dto.ReviewResponse;
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewAddRequest;
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewAddResponse;
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewResponse;
 import com.jpa.jpaexercise.hospital.domain.entity.Hospital;
 import com.jpa.jpaexercise.hospital.domain.entity.Review;
 import com.jpa.jpaexercise.hospital.repository.HospitalRepository;

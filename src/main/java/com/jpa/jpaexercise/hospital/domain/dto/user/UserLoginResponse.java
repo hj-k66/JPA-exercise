@@ -1,4 +1,4 @@
-package com.jpa.jpaexercise.hospital.domain.dto;
+package com.jpa.jpaexercise.hospital.domain.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

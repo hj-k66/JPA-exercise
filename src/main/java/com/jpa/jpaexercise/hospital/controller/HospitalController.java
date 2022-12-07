@@ -1,9 +1,9 @@
 package com.jpa.jpaexercise.hospital.controller;
 
 import com.jpa.jpaexercise.hospital.domain.dto.HospitalResponse;
-import com.jpa.jpaexercise.hospital.domain.dto.ReviewAddRequest;
-import com.jpa.jpaexercise.hospital.domain.dto.ReviewAddResponse;
-import com.jpa.jpaexercise.hospital.domain.dto.ReviewResponse;
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewAddRequest;
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewAddResponse;
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewResponse;
 import com.jpa.jpaexercise.hospital.service.HospitalService;
 import com.jpa.jpaexercise.hospital.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;

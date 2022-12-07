@@ -2,15 +2,14 @@ package com.jpa.jpaexercise.hospital.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jpa.jpaexercise.hospital.domain.dto.UserDto;
-import com.jpa.jpaexercise.hospital.domain.dto.UserJoinRequest;
-import com.jpa.jpaexercise.hospital.domain.dto.UserLoginRequest;
+import com.jpa.jpaexercise.hospital.domain.dto.user.UserDto;
+import com.jpa.jpaexercise.hospital.domain.dto.user.UserJoinRequest;
+import com.jpa.jpaexercise.hospital.domain.dto.user.UserLoginRequest;
 import com.jpa.jpaexercise.hospital.exception.ErrorCode;
 import com.jpa.jpaexercise.hospital.exception.HospitalReviewException;
 import com.jpa.jpaexercise.hospital.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

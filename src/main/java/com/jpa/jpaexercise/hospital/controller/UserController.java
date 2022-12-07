@@ -1,6 +1,7 @@
 package com.jpa.jpaexercise.hospital.controller;
 
 import com.jpa.jpaexercise.hospital.domain.dto.*;
+import com.jpa.jpaexercise.hospital.domain.dto.user.*;
 import com.jpa.jpaexercise.hospital.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

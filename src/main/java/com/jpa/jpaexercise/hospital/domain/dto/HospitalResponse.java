@@ -1,5 +1,6 @@
 package com.jpa.jpaexercise.hospital.domain.dto;
 
+import com.jpa.jpaexercise.hospital.domain.dto.review.ReviewResponse;
 import lombok.*;
 
 import java.util.List;
