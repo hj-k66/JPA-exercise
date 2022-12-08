@@ -14,7 +14,6 @@ import com.jpa.jpaexercise.hospital.repository.VisitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +33,9 @@ public class VisitService {
                 .hospital(hospital)
                 .payment(visitCreateRequest.getPayment())
                 .disease(visitCreateRequest.getDisease())
-                .createDateTime(LocalDate.now())
                 .user(user)
                 .build();
+
         visitRepository.save(visit);
         return new VisitCreateResponse("방문 기록 등록에 성공했습니다.");
     }
